@@ -8,6 +8,7 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import { TopBar } from './topBar/TopBar';
+import { InformationBox } from '../informationBox/InformationBox';
 
 
 
@@ -22,7 +23,13 @@ export const Landing = () => {
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
     <TopBar></TopBar>
-      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <InformationBox></InformationBox>
+        <InformationBox></InformationBox>
+        <InformationBox></InformationBox>
+        <InformationBox></InformationBox>
+        
+        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+       
         <BottomNavigation
           showLabels
           value={value}
