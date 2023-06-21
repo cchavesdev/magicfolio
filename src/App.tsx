@@ -3,6 +3,7 @@ import "./App.css";
 import { Login } from "./components/login/Login";
 import { AuthProvider, RequireAuth } from "react-auth-kit";
 import { Home } from "./components/home/Home";
+import { Landing } from "./components/landing/Landing";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path={"/login"} element={<Login></Login>} />
+          <Route path={"/"} element={<Landing></Landing>} />
           <Route
-            path={"/"}
+            path={"/home"}
             element={
               <RequireAuth loginPath={"/login"}>
              <Home/>
