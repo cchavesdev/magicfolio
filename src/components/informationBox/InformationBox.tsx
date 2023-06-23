@@ -14,6 +14,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { GameCard } from '../../interfaces/interfaces';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -30,7 +31,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export const InformationBox =  () => {
+export const InformationBox:React.FC<GameCard> =  ({comment, name, image, publishDate}) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -57,13 +58,13 @@ export const InformationBox =  () => {
         component="img"
         height="220px"
         width={"100%"}
-        image="https://cards.scryfall.io/large/front/4/d/4d960186-4559-4af0-bd22-63baa15f8939.jpg?1599709515"
+        image={image}
         alt="Paella dish"
         sx={{objectFit: "contain"}}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-         Excelente estado. Se vende por que me da la gana y quiero hacer dinero. No me juzguen people. Precio negociable $5000.
+        {comment}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
