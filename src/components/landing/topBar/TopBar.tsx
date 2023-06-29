@@ -15,6 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { ChangeEvent } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -56,13 +57,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const TopBar = () => {
+
+interface TopBarProps {
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const TopBar: React.FC<TopBarProps>  = ({setSearchQuery}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleSearch = (event:ChangeEvent<HTMLInputElement>)=>{
+    setSearchQuery(event.target.value)
+  }
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -176,7 +186,7 @@ export const TopBar = () => {
           >
             MUI
           </Typography>
-          <Search>
+          <Search onChange={handleSearch}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

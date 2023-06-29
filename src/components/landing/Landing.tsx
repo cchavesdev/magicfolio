@@ -16,7 +16,7 @@ import { GameCard } from '../../interfaces/interfaces';
 export const Landing = () => {
   const [value, setValue] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
-  const [saleList, setSaleList] = React.useState<GameCard[]>([
+  const [originalSaleList, setOriginalSaleList] = React.useState<GameCard[]>([
     {
         name: "Mana Crypt",
         image:"https://cards.scryfall.io/large/front/4/d/4d960186-4559-4af0-bd22-63baa15f8939.jpg?1599709515",
@@ -36,15 +36,24 @@ export const Landing = () => {
         comment: "Excelente estado. Se vende por que me da la gana y quiero hacer dinero. No me juzguen people. Precio negociable $5000"
     }
   ]);
+  const [saleList, setSaleList] = React.useState<GameCard[]>([]);
+  const [searchQuery, setSearchQuery] = React.useState('')
+
 
 
   React.useEffect(() => {
-    (ref.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-  }, [value]);
+   const filtered = originalSaleList.filter((element)=> element.name.toLowerCase().includes(searchQuery.toLocaleLowerCase()));
+   if(!filtered || filtered['length'] <= 0){
+    setSaleList(originalSaleList);
+   }else{
+    setSaleList(filtered);
+   }
+  
+  },[searchQuery]);
 
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
-    <TopBar></TopBar>
+    <TopBar setSearchQuery={setSearchQuery}></TopBar>
       {
         saleList.map((card)=> (
           <InformationBox comment={card.comment} image={card.image} name={card.name} publishDate={new Date()}></InformationBox>
