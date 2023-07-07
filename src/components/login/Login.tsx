@@ -4,6 +4,7 @@ import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useSignIn } from "react-auth-kit";
 import Button from '@mui/material/Button';
+import GoogleIcon from '@mui/icons-material/Google';
 
 export const Login = () => {
   const [value, setValue] = useState("");
@@ -39,9 +40,18 @@ const signIn = useSignIn();
     });
   };
   return (
-    <div>
-        <h1>Iniciar session con Google</h1>
-        <Button variant="contained" onClick={handleLogin}>Iniciar Sesion</Button>
+    <div className="login-container">
+      <h2 className="text-center">Login to continue</h2>
+        <Button
+      variant="contained"
+      color="primary"
+      startIcon={<GoogleIcon />}
+      onClick={handleLogin}
+      className=""
+      style={{margin: "auto", display: "flex"}}
+    >
+     Continue with Google
+    </Button>
    
     </div>
   );
