@@ -56,10 +56,10 @@ export const InformationBox:React.FC<GameCard> =  ({comment, name, image, publis
       />
       <CardMedia
         component="img"
-        height="220px"
-        width={"100%"}
+        height="auto"
+        width={"80%"}
         image={image}
-        alt="Paella dish"
+        alt={name}
         sx={{objectFit: "contain"}}
       />
       <CardContent>
